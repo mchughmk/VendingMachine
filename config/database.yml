@@ -1,8 +1,7 @@
 development: &default
-  adapter: sqlite
+  adapter: sqlite3
   encoding: unicode
   database: db/dev.db
-  pool: 5
 
 test:
   <<: *default
