@@ -3,12 +3,12 @@
   steps:
   - type: serial
     steps:
-      - service: postgres
-        command: pg_isready -h "postgres" -U "postgres"
       - service: web
-        command: rails db:migrate
+        command: script/ci pg_ready
       - service: web
-        command: rails test
+        command: script/ci migrate
+      - service: web
+        command: script/ci unit
       - service: herokudeployment
         command: codeship_heroku deploy /deploy rails-vending-machine
       - service: herokudeployment
