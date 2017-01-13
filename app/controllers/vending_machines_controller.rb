@@ -65,7 +65,7 @@ class VendingMachinesController < ApplicationController
     #revenue = @vending_machine.revenue
     notice = 'No revenue to be collected.'
     if VendingMachine.find(1).revenue > 0
-      VendingMachine.find(1).revenue = 0
+      VendingMachine.find(1).update_attribute(:revenue, 0)
       notice = 'Revenue was successfully collected.'
     end
     redirect_to vending_machines_url, notice: notice
