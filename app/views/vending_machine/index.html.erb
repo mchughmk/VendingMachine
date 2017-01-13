@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="text-center">
+    <h1>Vending Machine <%= @vending_machine.revenue %></h1>
+
+    <table class="row justify-content-center">
+      <tbody>
+        <tr>
+          <td><input type="button" class="btn btn-primary coin-insert" value="1"></td>
+          <td><input type="button" class="btn btn-primary coin-insert" value="5"></td>
+          <td><input type="button" class="btn btn-primary coin-insert" value="10"></td>
+          <td><input type="button" class="btn btn-primary coin-insert" value="25"></td>
+          <td><input type="button" class="btn btn-primary coin-insert" value="100"></td>
+          <td><input type="button" class="btn btn-primary coin-insert" value="500"></td>
+          <td><input type="button" class="btn btn-danger clear-balance" value="Cancel"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Balance: <span id="display-balance"><%= @balance %></span></h3>
+
+    <form id="submit-money" action="/add-money" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input id="amount" name="amount" type="hidden" value="0">
+    </form>
+
+    <form action="/" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <table id="products-table" class="row justify-content-center">
+        <tbody>
+        <% @vending_machine.products.each do |product| %>
+            <tr>
+              <td><%= product[:name] %>: <%= product[:unit_price] %> cents Qty: <%= product.vending_machine_stock(@vending_machine.id)[:quantity] %></td>
+              <td><input class="product-quantity" type="number" name="<%= product[:id] %>" value="0"
+                         style="width: 30px" data-cost="<%= product[:unit_price] %>"
+                         data-quantity="<%= product.vending_machine_stock(@vending_machine.id)[:quantity] %>"></td>
+            </tr>
+        <% end %>
+        <tr><td>Total: <span id="total-cost">0</span></td><td><input id="vend" type="button" class="btn btn-success" value="Vend"></td></tr>
+        </tbody>
+      </table>
+    </form>
+
+    <div id="insufficient-funds" class="alert alert-danger" style="display: none">
+    </div>
+    <div id="return-div" class="alert alert-warning" style="display: none">
+    </div>
+
+    <% if @product_dict %>
+    <div id="purchase-div" class="alert alert-success justify-content-center">
+      <h5>Congratulations! You made a purchase!</h5>
+      <table class="row justify-content-center">
+        <tbody>
+          <% @product_dict.each do |product, quantity| %>
+          <tr>
+            <td><%= product %>: <%= quantity %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <% end %>
+
+    <form id="products-form" action="/" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input id="balance" name="balance" type="hidden" value="<%= @balance %>">
+      <input id="products" name="products" type="hidden" value="0">
+      <input id="quantities" name="quantities" type="hidden" value="0">
+    </form>
+
+  </div>
+
+</div>

@@ -8,4 +8,8 @@ Rails.application.routes.draw do
 
   get '/vending_machines', to: 'vending_machines#index'
   get '/vending_machines/collect_revenue', to: 'vending_machines#collect_revenue'
+    root 'vending_machine#index', as: :index
+    post '/add-money/', to: 'vending_machine#add_money', as: 'add-money'
+    post '/return-money', to: 'vending_machine#return_money', as: 'return-money'
+    post '/', to: 'vending_machine#vend', as: 'vend'
 end
