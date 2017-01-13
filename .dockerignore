@@ -1,0 +1,12 @@
+.git*
+db/*.db
+log/*
+tmp/*
+Dockerfile
+Dockerfile.*
+docker-compose.yml
+codeship-services.yml
+codeship-steps.yml
+*.env
+*.encrypted
+README.md

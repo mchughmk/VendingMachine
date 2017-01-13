@@ -1,0 +1,8 @@
+{
+  "name": "Rails Vending Machine",
+  "description": "A sample vending machine written in Rails",
+  "image": "heroku/rails-vending-machine",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}

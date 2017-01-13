@@ -1,0 +1,18 @@
+FROM heroku/ruby
+
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+
+RUN mkdir /code
+WORKDIR /code
+
+ADD Gemfile /code/Gemfile
+ADD Gemfile.lock /code/Gemfile.lock
+
+RUN bundle install --without development test
+
+ENV RAILS_ENV production
+
+ADD . /code
+
+# Precompile Rails assets
+RUN rails assets:precompile

@@ -1,0 +1,14 @@
+web:
+  build:
+    context: .
+    image: xc/rails-vending-machine
+    dockerfile: Dockerfile.prod
+  environment:
+    LISTEN_ON: "0.0.0.0"
+  command: bundle exec rails s puma -C config/puma.rb
+  cached: true
+herokudeployment:
+  image: codeship/heroku-deployment
+  encrypted_env_file: deployment.env.encrypted
+  volumes:
+    - ./:/deploy

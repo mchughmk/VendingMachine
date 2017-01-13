@@ -1,0 +1,12 @@
+- type: parallel
+  tag: "add-ci"
+  dockercfg_service: dockercfg_generator
+  steps:
+  - type: serial
+    steps:
+      - service: web
+        command: rails test
+      - service: herokudeployment
+        command: codeship_heroku deploy /deploy rails-vending-machine
+      - service: herokudeployment
+        command: heroku run --app rails-vending-machine -- rails db:migrate

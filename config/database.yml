@@ -6,3 +6,8 @@ development: &default
 test:
   <<: *default
   database: db/test.db
+
+production:
+  encoding: unicode
+  pool: 5
+  url: <%= ENV['DATABASE_URL'] %>
