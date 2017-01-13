@@ -4,8 +4,10 @@
   - type: serial
     steps:
       - service: web
+        command: rails db:create db:migrate
+      - service: web
         command: rails test
       - service: herokudeployment
         command: codeship_heroku deploy /deploy rails-vending-machine
       - service: herokudeployment
-        command: heroku run --app rails-vending-machine -- rails db:migrate
+        command: heroku run --app rails-vending-machine -- rails db:create db:migrate

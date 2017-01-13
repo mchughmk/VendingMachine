@@ -3,10 +3,14 @@ web:
     context: .
     image: xc/rails-vending-machine
     dockerfile: Dockerfile.prod
+  links:
+      - postgres
   environment:
-    LISTEN_ON: "0.0.0.0"
-  command: bundle exec rails s puma -C config/puma.rb
+    - DATABASE_URL=postgres://postgres@postgres/postgres
+  command: rails s puma -C config/puma.rb
   cached: true
+postgres:
+  image: postgres:9.6
 herokudeployment:
   image: codeship/heroku-deployment
   encrypted_env_file: deployment.env.encrypted
