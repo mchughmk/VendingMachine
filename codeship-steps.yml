@@ -3,7 +3,7 @@
   steps:
   - type: serial
     steps:
-      - service: web
+      - service: postgres
         command: pg_isready -h "postgres" -U "postgres"
       - service: web
         command: rails db:migrate
