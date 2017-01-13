@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Vending Machines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Revenue</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vending_machines.each do |vending_machine| %>
+      <tr>
+        <td><%= vending_machine.revenue %></td>
+        <td><%= link_to 'Collect Revenue', '/vending_machines/collect_revenue' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

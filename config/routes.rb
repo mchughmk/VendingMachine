@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   # root 'application#hello'
 
   resources :products
+
+  get '/vending_machines', to: 'vending_machines#index'
+  get '/vending_machines/collect_revenue', to: 'vending_machines#collect_revenue'
 end
