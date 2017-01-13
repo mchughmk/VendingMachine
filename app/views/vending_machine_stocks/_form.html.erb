@@ -1,0 +1,32 @@
+<%= form_for(vending_machine_stock) do |f| %>
+  <% if vending_machine_stock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vending_machine_stock.errors.count, "error") %> prohibited this vending_machine_stock from being saved:</h2>
+
+      <ul>
+      <% vending_machine_stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :vending_machine_id %>
+    <%= f.number_field :vending_machine_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :product_id %>
+    <%= f.number_field :product_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

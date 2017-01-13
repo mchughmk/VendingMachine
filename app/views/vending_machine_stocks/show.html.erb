@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vendingmachine:</strong>
+  <%= @vending_machine_stock.vending_machine_id %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @vending_machine_stock.product_id %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @vending_machine_stock.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_vending_machine_stock_path(@vending_machine_stock) %> |
+<%= link_to 'Back', vending_machine_stocks_path %>

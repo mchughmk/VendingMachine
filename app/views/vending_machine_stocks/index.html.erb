@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Vending Machine Stocks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vendingmachine</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vending_machine_stocks.each do |vending_machine_stock| %>
+      <tr>
+        <td><%= vending_machine_stock.vending_machine_id %></td>
+        <td><%= vending_machine_stock.product_id %></td>
+        <td><%= vending_machine_stock.quantity %></td>
+        <td><%= link_to 'Show', vending_machine_stock %></td>
+        <td><%= link_to 'Edit', edit_vending_machine_stock_path(vending_machine_stock) %></td>
+        <td><%= link_to 'Destroy', vending_machine_stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vending Machine Stock', new_vending_machine_stock_path %>

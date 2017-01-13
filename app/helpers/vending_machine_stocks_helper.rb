@@ -1,0 +1,2 @@
+module VendingMachineStocksHelper
+end
