@@ -4,7 +4,7 @@
   - type: serial
     steps:
       - service: web
-        command: pg_isready -h "${POSTGRESQL_HOST}" -U "${POSTGRESQL_USER}"
+        command: pg_isready -h "postgres" -U "postgres"
       - service: web
         command: rails db:migrate
       - service: web
